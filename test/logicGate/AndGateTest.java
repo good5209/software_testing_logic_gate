@@ -8,6 +8,7 @@ import logicGate.Wire;
 public class AndGateTest extends TestCase {
 
 	public void testAndGate() {
+		// decision table test
 		try {
 			new AndGate(null, null, null);
 			assertFalse(true);
@@ -66,6 +67,9 @@ public class AndGateTest extends TestCase {
 		} catch (GateException e) {
 			assertTrue(false);
 		}
+		
+		// method level, all define-use p-use test
+		// class level, all define use pair
 	}
 	
 	public void testOutputSignal() {
@@ -73,6 +77,7 @@ public class AndGateTest extends TestCase {
 		Wire inputWire2 = new Wire();
 		Wire outputWire = new Wire();
 		try {
+			// decision table test
 			AndGate gate = new AndGate(inputWire1, inputWire2, outputWire);
 			
 			inputWire1.setSignal(false);
@@ -90,35 +95,11 @@ public class AndGateTest extends TestCase {
 			inputWire1.setSignal(true);
 			inputWire2.setSignal(true);
 			assertEquals(true, gate.getOutputSignal());
+			
+			// method level, all define-use p-use test
+			// class level, all define use pair
 		} catch (GateException e) {
 			assertTrue(false);
 		}
-	}
-	
-	public void testWireSignal() {
-		Wire inputWire1 = new Wire();
-		Wire inputWire2 = new Wire();
-		Wire outputWire = new Wire();
-		try {
-			new AndGate(inputWire1, inputWire2, outputWire);
-		} catch (GateException e) {
-			assertTrue(false);
-		}
-		
-		inputWire1.setSignal(false);
-		inputWire2.setSignal(false);
-		assertEquals(false, outputWire.getSignal());
-		
-		inputWire1.setSignal(true);
-		inputWire2.setSignal(false);
-		assertEquals(false, outputWire.getSignal());
-		
-		inputWire1.setSignal(false);
-		inputWire2.setSignal(true);
-		assertEquals(false, outputWire.getSignal());
-		
-		inputWire1.setSignal(true);
-		inputWire2.setSignal(true);
-		assertEquals(true, outputWire.getSignal());
 	}
 }
