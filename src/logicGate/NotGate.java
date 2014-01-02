@@ -4,7 +4,7 @@ package logicGate;
  * obtain one input signal, and produce "or" signal to output wire
  */
 public class NotGate implements Gate {
-	public Wire input, output;
+	private Wire input, output;
 	
 	/**
 	 * Not gate
